@@ -24,43 +24,10 @@ export interface MovieDbConfigOptions {
 
   /**
    * Maximum number of requests per second
+   * TMDb's soft limit is around 50 req/s
    * @default 50
    */
   readonly requestsPerSecond: number
-
-  /**
-   * Burst capacity for token bucket rate limiting
-   * Allows temporary rate limit violations for better UX
-   * @default 10
-   */
-  readonly burstCapacity: number
-
-  /**
-   * Maximum buffer size for request queue
-   * Prevents unbounded memory growth during traffic spikes
-   * @default 200
-   */
-  readonly bufferCapacity: number
-
-  /**
-   * Buffer overflow strategy
-   * - "dropping": Drop new requests when buffer is full
-   * - "sliding": Drop oldest requests when buffer is full
-   * @default "dropping"
-   */
-  readonly bufferStrategy: 'dropping' | 'sliding'
-
-  /**
-   * Maximum number of concurrent HTTP connections
-   * @default 10
-   */
-  readonly maxConcurrent?: number
-
-  /**
-   * Tag applied to all metrics for isolation (useful for testing)
-   * @default undefined
-   */
-  readonly metricsTag?: string
 }
 
 /**
@@ -86,10 +53,6 @@ export class MovieDbConfig extends Context.Tag('MovieDbConfig')<MovieDbConfig, M
 export const defaultConfig: Omit<MovieDbConfigOptions, 'apiKey'> = {
   baseUrl: 'https://api.themoviedb.org/3/',
   requestsPerSecond: 50,
-  burstCapacity: 10,
-  bufferCapacity: 200,
-  bufferStrategy: 'dropping',
-  maxConcurrent: 10,
 }
 
 /**

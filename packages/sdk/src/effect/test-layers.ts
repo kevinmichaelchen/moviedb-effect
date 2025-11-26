@@ -28,10 +28,6 @@ export const makeTestConfig = (overrides?: Partial<MovieDbConfigOptions>): Layer
     apiKey: 'test-api-key',
     baseUrl: 'https://api.themoviedb.org/3/',
     requestsPerSecond: 50,
-    burstCapacity: 10,
-    bufferCapacity: 200,
-    bufferStrategy: 'dropping',
-    maxConcurrent: 10,
     ...overrides,
   }
 

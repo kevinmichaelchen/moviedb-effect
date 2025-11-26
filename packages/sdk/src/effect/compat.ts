@@ -73,10 +73,6 @@ export class MovieDbCompat {
       apiKey: config.apiKey,
       baseUrl: config.baseUrl ?? 'https://api.themoviedb.org/3/',
       requestsPerSecond: config.requestsPerSecondLimit ?? 50,
-      burstCapacity: 10,
-      bufferCapacity: 200,
-      bufferStrategy: 'dropping',
-      maxConcurrent: 10,
     }
 
     const ConfigLayer = Layer.succeed(MovieDbConfig, fullConfig)

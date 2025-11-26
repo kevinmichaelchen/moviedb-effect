@@ -9,7 +9,19 @@
     "test:integration": "nx run-many -t test:integration",
     "lint": "nx run-many -t lint",
     "format": "prettier --write \"packages/**/*.ts\"",
-    "knip": "knip"
+    "format:check": "prettier --check \"packages/**/*.ts\"",
+    "typecheck": "tsc --noEmit",
+    "knip": "knip",
+    "precommit": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm knip && pnpm test:unit",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "@effect/eslint-plugin": "^0.3.2",
@@ -24,7 +36,9 @@
     "dotenv": "^17.2.3",
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
+    "husky": "^9.1.7",
     "knip": "^5.70.2",
+    "lint-staged": "^16.2.7",
     "nx": "latest",
     "prettier": "^3.6.2",
     "tsdown": "^0.16.7",

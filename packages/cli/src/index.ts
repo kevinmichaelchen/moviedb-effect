@@ -37,9 +37,6 @@ const ConfigLayer = Layer.effect(
       apiKey,
       baseUrl: 'https://api.themoviedb.org/3/',
       requestsPerSecond: 50,
-      burstCapacity: 10,
-      bufferCapacity: 200,
-      bufferStrategy: 'dropping' as const,
     }
   }),
 )

@@ -158,7 +158,7 @@ Error types: `NotFoundError`, `AuthenticationError`, `RateLimitError`, `Validati
 ### Built-in Resilience
 
 - **Automatic retry** - Retries on network errors, rate limits (429), and server errors (5xx) with exponential backoff
-- **Rate limiting** - Stays within TMDb's 40 req/s limit automatically
+- **Rate limiting** - Stays within TMDb's ~50 req/s soft limit automatically
 - **Observability** - Structured logs, distributed tracing spans, and metrics on every request
 
 ## Configuration
@@ -173,7 +173,7 @@ const ConfigLive = Layer.succeed(MovieDbConfig, {
 })
 ```
 
-Rate limiting is automatic with sensible defaults (40 req/s). See `MovieDbConfig` type for advanced options.
+Rate limiting is automatic with sensible defaults (50 req/s). You can customize `requestsPerSecond` in your config.
 
 ## Contributing
 

@@ -16,9 +16,10 @@
   },
   "ignoreDependencies": [
     "@effect/language-service",
+    "@nx/js",
     "@typescript-eslint/eslint-plugin",
     "@typescript-eslint/parser",
-    "dotenv"
+    "lint-staged"
   ],
   "ignore": ["**/dist/**", "packages/sdk/src/effect/schemas/**/*.ts"],
   "ignoreExportsUsedInFile": true

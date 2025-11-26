@@ -27,9 +27,6 @@
  *   apiKey: "your-api-key",
  *   baseUrl: "https://api.themoviedb.org/3/",
  *   requestsPerSecond: 50,
- *   burstCapacity: 10,
- *   bufferCapacity: 200,
- *   bufferStrategy: "dropping",
  * });
  *
  * const AppLayer = Movie.Default.pipe(

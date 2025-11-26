@@ -107,3 +107,4 @@ yarn-error.log
 /opencode.json
 /opencode.json.bak
 # END Ruler Generated Files
+tsconfig.tsbuildinfo

@@ -12,11 +12,6 @@ const makeTestRateLimiter = (overrides?: Partial<MovieDbConfigOptions>) => {
     apiKey: 'test-key',
     baseUrl: 'https://api.themoviedb.org/4/',
     requestsPerSecond: 10, // 1 request per 100ms
-    burstCapacity: 2,
-    bufferCapacity: 5,
-    bufferStrategy: 'dropping',
-    maxConcurrent: 2,
-    metricsTag: crypto.randomUUID(),
     ...overrides,
   }
   return makeRateLimiter(config)
