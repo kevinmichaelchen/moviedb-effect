@@ -1,0 +1,67 @@
+{
+  "name": "moviedb-effect",
+  "description": "A library for interacting with themoviedb.org API using Effect",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "build": "tsdown src/index.ts",
+    "build:watch": "tsdown --watch",
+    "test": "vitest run",
+    "test:unit": "vitest run tests/**/*.unit.test.ts",
+    "test:streaming": "vitest run tests/**/streaming*.test.ts",
+    "test:integration": "vitest run tests/**/*.integration.test.ts",
+    "lint": "eslint . --ext .ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevinmichaelchen/moviedb-effect.git",
+    "directory": "packages/sdk"
+  },
+  "license": "MIT",
+  "keywords": [
+    "themoviedb",
+    "api",
+    "tmdb",
+    "effect"
+  ],
+  "bugs": {
+    "url": "https://github.com/kevinmichaelchen/moviedb-effect/issues"
+  },
+  "homepage": "https://github.com/kevinmichaelchen/moviedb-effect#readme",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "author": "Grant Holle <https://github.com/grantholle>",
+  "contributors": [
+    "Irwing Reza <irwing85@gmail.com> (http://irwingreza.com/)",
+    {
+      "name": "Chad Michael",
+      "email": "chad@medlor.com",
+      "url": "https://medlor.com/"
+    },
+    "pankaja92 (http://thidasapankaja.me/)",
+    "Valentin Mocanu <mr_vali@yahoo.ro> (http://rontavstudio.com)",
+    "Shaun Lim (https://github.com/ShaunLWM)",
+    "Alexander Roidl (https://github.com/alexanderroidl)"
+  ],
+  "dependencies": {
+    "@effect/platform": "^0.93.3",
+    "@effect/platform-node": "^0.101.1",
+    "effect": "^3.19.6"
+  }
+}

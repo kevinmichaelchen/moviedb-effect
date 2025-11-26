@@ -1,0 +1,25 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "workspaces": {
+    ".": {
+      "entry": [],
+      "project": ["*.{js,mjs,cjs,ts}"]
+    },
+    "packages/sdk": {
+      "entry": ["src/index.ts", "tests/**/*.test.ts", "examples/**/*.ts"],
+      "project": ["src/**/*.ts", "tests/**/*.ts", "examples/**/*.ts"]
+    },
+    "packages/cli": {
+      "entry": ["src/index.ts"],
+      "project": ["src/**/*.ts"]
+    }
+  },
+  "ignoreDependencies": [
+    "@effect/language-service",
+    "@typescript-eslint/eslint-plugin",
+    "@typescript-eslint/parser",
+    "dotenv"
+  ],
+  "ignore": ["**/dist/**", "packages/sdk/src/effect/schemas/**/*.ts"],
+  "ignoreExportsUsedInFile": true
+}
