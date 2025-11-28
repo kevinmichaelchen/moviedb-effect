@@ -3,6 +3,7 @@
 **Project**: A modern, type-safe TypeScript client for The Movie Database (TMDb) API, built with Effect.
 
 **Core Stack**:
+
 - **Language**: TypeScript (strict mode, full type safety)
 - **Runtime**: Node.js with PNPM package manager (NOT npm, NOT bun, NOT deno)
 - **Framework**: Effect (see: https://effect.website/)
@@ -13,6 +14,7 @@
 ## Project Overview
 
 ### Key Files & Structure
+
 ```
 src/
 ├── effect/              # Core Effect-based implementation
@@ -51,7 +53,9 @@ tests/effect/
 ### Key Concepts
 
 #### Effect Services
+
 All major components are implemented as Effect Services with dependency injection:
+
 - `Movie.Service<Movie>()` - Provides movie operations
 - `Tv.Service<Tv>()` - Provides TV operations
 - `Search.Service<Search>()` - Provides search operations
@@ -60,7 +64,9 @@ All major components are implemented as Effect Services with dependency injectio
 - `RateLimiter` - Token-bucket rate limiter
 
 #### Error Handling
+
 Typed error hierarchy using `Data.TaggedError`:
+
 - `NotFoundError` - 404 responses
 - `AuthenticationError` - 401/403 responses
 - `RateLimitError` - 429 responses with retry-after
@@ -71,16 +77,20 @@ Typed error hierarchy using `Data.TaggedError`:
 Pattern matching with `Effect.catchTags()` enables exhaustive error handling.
 
 #### Streaming & Pagination
+
 All list endpoints provide:
+
 - `getPopular()` - Single page results
 - `streamPopular()` - Stream all pages with lazy evaluation
-Streaming utilities:
+  Streaming utilities:
 - `paginatedStream()` - Basic pagination
 - `mapPaginated()` - Map over all pages
 - `mapPaginatedEffect()` - Concurrent mapping
 
 #### Observability
+
 Built-in instrumentation:
+
 - **Metrics**: `apiRequestCounter`, `apiRequestDuration`, `apiErrorCounter`
 - **Logging**: Structured logs with annotations (path, duration, error context)
 - **Tracing**: Distributed tracing with `Effect.withSpan()`
@@ -89,6 +99,7 @@ Built-in instrumentation:
 ## Development Guidelines
 
 ### Code Style
+
 1. **Use TypeScript strict mode** - All code must be type-safe
 2. **Use Effect patterns**:
    - `Effect.gen()` for composing effects
@@ -101,6 +112,7 @@ Built-in instrumentation:
 5. **Comment Effect code** - JSDoc for public APIs
 
 ### Avoid
+
 - ❌ `npm` - Use `pnpm` only
 - ❌ `bun` - Use `pnpm` only
 - ❌ `deno` - Use Node.js with `pnpm` only
@@ -112,6 +124,7 @@ Built-in instrumentation:
 - ❌ Manual resource management - Use Effect scopes
 
 ### Testing Best Practices
+
 1. **Unit tests** - No network, use mocks (test-utils.ts)
 2. **Test error cases** - Use `expectError()` from test-utils
 3. **Test streaming** - Verify lazy evaluation with Stream.take
@@ -119,6 +132,7 @@ Built-in instrumentation:
 5. **Assertions** - Use Chai `expect()` with `.to.equal()`, `.to.be.null`, etc.
 
 ### Running Tests
+
 ```bash
 pnpm test:unit       # Fast: error handling, schemas, observability (<1s)
 pnpm test:streaming  # Pagination tests (<2s)
@@ -127,6 +141,7 @@ MOVIEDB_API_KEY=xxx pnpm test
 ```
 
 ### Linting & Format
+
 ```bash
 pnpm lint            # Check ESLint + @effect/eslint-plugin
 pnpm lint:fix        # Auto-fix issues
@@ -134,6 +149,7 @@ pnpm format          # Run Prettier
 ```
 
 ## API Key Setup
+
 1. Get free API key at: https://www.themoviedb.org/settings/api
 2. Set environment variable: `export MOVIEDB_API_KEY=your_key`
 3. Or create `.env` file: `echo "MOVIEDB_API_KEY=xxx" > .env`
@@ -142,56 +158,62 @@ pnpm format          # Run Prettier
 ## Common Patterns
 
 ### Service Usage
+
 ```typescript
-const program = Effect.gen(function* () {
-  const movie = yield* Movie;
-  const details = yield* movie.getDetails({ id: 550 });
-  console.log(details.title); // "Fight Club"
-});
+const program = Effect.gen(function*() {
+  const movie = yield* Movie
+  const details = yield* movie.getDetails({ id: 550 })
+  console.log(details.title) // "Fight Club"
+})
 ```
 
 ### Error Handling
+
 ```typescript
-const program = Effect.gen(function* () {
-  const movie = yield* Movie;
+const program = Effect.gen(function*() {
+  const movie = yield* Movie
   yield* movie.getDetails({ id: 999 }).pipe(
     Effect.catchTags({
-      NotFoundError: () => Console.log("Not found"),
+      NotFoundError: () => Console.log('Not found'),
       RateLimitError: (e) => Effect.sleep(e.retryAfter || 5000),
-    })
-  );
-});
+    }),
+  )
+})
 ```
 
 ### Streaming with Pagination
+
 ```typescript
-const program = Effect.gen(function* () {
-  const movie = yield* Movie;
-  const results = yield* movie.streamPopular({ language: "en-US" }, { maxResults: 100 }).pipe(
+const program = Effect.gen(function*() {
+  const movie = yield* Movie
+  const results = yield* movie.streamPopular({ language: 'en-US' }, { maxResults: 100 }).pipe(
     Stream.runCollect,
-  );
-});
+  )
+})
 ```
 
 ### Testing with Mocks
+
 ```typescript
-const program = Effect.gen(function* () {
+const program = Effect.gen(function*() {
   // Test code with mocks
 }).pipe(
   Effect.provide(Movie.Default),
   Effect.provide(MovieDbClient.Default),
   Effect.provide(MockRateLimiter),
-  Effect.provide(makeTestConfig({ apiKey: "test-key" })),
-);
+  Effect.provide(makeTestConfig({ apiKey: 'test-key' })),
+)
 ```
 
 ## Important Links
+
 - Effect Docs: https://effect.website/
 - Ruler Docs: https://github.com/intellectronica/ruler
 - TMDb API: https://developer.themoviedb.org/docs
 - Project Repo: https://github.com/kevinmichaelchen/moviedb-effect
 
 ## Recent Improvements
+
 - Migrated from Deno test to Mocha (PNPM standard)
 - Removed all `.ts` extensions from imports (Node.js standard)
 - Added 55 new unit tests (error handling, schema validation, observability)

@@ -1,7 +1,7 @@
 import tseslint from 'typescript-eslint'
 import eslint from '@eslint/js'
 import globals from 'globals'
-import effectPlugin from '@effect/eslint-plugin'
+import * as effectPlugin from '@effect/eslint-plugin'
 
 export default tseslint.config(
   {
@@ -10,12 +10,17 @@ export default tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   ...tseslint.configs.stylistic,
+  ...effectPlugin.configs.dprint,
   {
     files: ['packages/**/*.ts'],
-    plugins: {
-      '@effect': effectPlugin,
-    },
     rules: {
+      '@effect/dprint': ['error', {
+        config: {
+          semiColons: 'asi',
+          quoteStyle: 'preferSingle',
+          trailingCommas: 'onlyMultiLine',
+        },
+      }],
       '@effect/no-import-from-barrel-package': 'error',
     },
     languageOptions: {

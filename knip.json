@@ -2,14 +2,49 @@
   "$schema": "https://unpkg.com/knip@5/schema.json",
   "workspaces": {
     ".": {
-      "entry": [],
       "project": ["*.{js,mjs,cjs,ts}"]
     },
-    "packages/sdk": {
-      "entry": ["src/index.ts", "tests/**/*.test.ts", "examples/**/*.ts"],
-      "project": ["src/**/*.ts", "tests/**/*.ts", "examples/**/*.ts"]
+    "packages/core": {
+      "entry": ["src/index.ts"],
+      "project": ["src/**/*.ts"]
     },
-    "packages/cli": {
+    "packages/tmdb": {
+      "entry": ["src/index.ts", "tests/**/*.test.ts"],
+      "project": ["src/**/*.ts", "tests/**/*.ts"]
+    },
+    "packages/omdb": {
+      "entry": ["src/index.ts", "tests/**/*.test.ts"],
+      "project": ["src/**/*.ts", "tests/**/*.ts"]
+    },
+    "packages/trakt": {
+      "entry": ["src/index.ts", "tests/**/*.test.ts"],
+      "project": ["src/**/*.ts", "tests/**/*.ts"]
+    },
+    "packages/watchmode": {
+      "entry": ["src/index.ts", "tests/**/*.test.ts"],
+      "project": ["src/**/*.ts", "tests/**/*.ts"]
+    },
+    "packages/letterboxd": {
+      "entry": ["src/index.ts", "tests/**/*.test.ts"],
+      "project": ["src/**/*.ts", "tests/**/*.ts"]
+    },
+    "packages/tmdb-cli": {
+      "entry": ["src/index.ts"],
+      "project": ["src/**/*.ts"]
+    },
+    "packages/omdb-cli": {
+      "entry": ["src/index.ts"],
+      "project": ["src/**/*.ts"]
+    },
+    "packages/trakt-cli": {
+      "entry": ["src/index.ts"],
+      "project": ["src/**/*.ts"]
+    },
+    "packages/watchmode-cli": {
+      "entry": ["src/index.ts"],
+      "project": ["src/**/*.ts"]
+    },
+    "packages/letterboxd-cli": {
       "entry": ["src/index.ts"],
       "project": ["src/**/*.ts"]
     }
@@ -18,9 +53,8 @@
     "@effect/language-service",
     "@nx/js",
     "@typescript-eslint/eslint-plugin",
-    "@typescript-eslint/parser",
-    "lint-staged"
+    "@typescript-eslint/parser"
   ],
-  "ignore": ["**/dist/**", "packages/sdk/src/effect/schemas/**/*.ts"],
+  "ignore": ["**/dist/**"],
   "ignoreExportsUsedInFile": true
 }

@@ -1,5 +1,6 @@
 {
-  "name": "moviedb-effect-monorepo",
+  "name": "movie-effect-monorepo",
+  "description": "Effect-based clients for movie APIs (TMDB, OMDB, Trakt, WatchMode, Letterboxd)",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,24 +9,16 @@
     "test:unit": "nx run-many -t test:unit",
     "test:integration": "nx run-many -t test:integration",
     "lint": "nx run-many -t lint",
-    "format": "prettier --write \"packages/**/*.ts\"",
-    "format:check": "prettier --check \"packages/**/*.ts\"",
+    "format": "dprint fmt",
+    "format:check": "dprint check",
     "typecheck": "tsc --noEmit",
     "knip": "knip",
     "precommit": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm knip && pnpm test:unit",
-    "prepare": "husky"
-  },
-  "lint-staged": {
-    "*.ts": [
-      "prettier --write"
-    ],
-    "*.{json,md}": [
-      "prettier --write"
-    ]
+    "prepare": "lefthook install",
+    "ruler": "npx -y ruler-mcp@latest apply"
   },
   "devDependencies": {
     "@effect/eslint-plugin": "^0.3.2",
-    "@effect/vitest": "^0.27.0",
     "@eslint/js": "^9.39.1",
     "@nx/js": "latest",
     "@swc-node/register": "^1.11.1",
@@ -34,13 +27,12 @@
     "@typescript-eslint/eslint-plugin": "^8.48.0",
     "@typescript-eslint/parser": "^8.48.0",
     "dotenv": "^17.2.3",
+    "dprint": "^0.49.0",
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
-    "husky": "^9.1.7",
     "knip": "^5.70.2",
-    "lint-staged": "^16.2.7",
+    "lefthook": "^1.11.13",
     "nx": "latest",
-    "prettier": "^3.6.2",
     "tsdown": "^0.16.7",
     "tsx": "^4.20.0",
     "typescript": "^5.9.3",

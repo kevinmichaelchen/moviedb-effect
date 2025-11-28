@@ -1,7 +1,12 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "release": {
-    "projects": ["moviedb-effect"],
+    "projects": [
+      "@movie-effect/core",
+      "@movie-effect/tmdb",
+      "@movie-effect/omdb",
+      "@movie-effect/watchmode"
+    ],
     "version": {
       "conventionalCommits": true
     },
