@@ -77,8 +77,8 @@ Effect.runPromise(runnable)
 [npm-badge]: https://img.shields.io/npm/v/@movie-effect/tmdb.svg
 [npm-url]: https://www.npmjs.com/package/@movie-effect/tmdb
 [license-badge]: https://img.shields.io/badge/License-MIT-yellow.svg
-[license-url]: https://github.com/kevinmichaelchen/moviedb-effect/blob/main/LICENSE.md
+[license-url]: https://github.com/kevinmichaelchen/movie-effect/blob/main/LICENSE.md
 [effect]: https://effect.website/
 [tmdb-api]: https://developer.themoviedb.org/
-[cli]: https://github.com/kevinmichaelchen/moviedb-effect/tree/main/packages/tmdb-cli
+[cli]: https://github.com/kevinmichaelchen/movie-effect/tree/main/packages/tmdb-cli
 [core]: https://www.npmjs.com/package/@movie-effect/core

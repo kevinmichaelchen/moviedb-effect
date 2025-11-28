@@ -81,8 +81,8 @@ Effect.runPromise(runnable)
 [npm-badge]: https://img.shields.io/npm/v/@movie-effect/omdb.svg
 [npm-url]: https://www.npmjs.com/package/@movie-effect/omdb
 [license-badge]: https://img.shields.io/badge/License-MIT-yellow.svg
-[license-url]: https://github.com/kevinmichaelchen/moviedb-effect/blob/main/LICENSE.md
+[license-url]: https://github.com/kevinmichaelchen/movie-effect/blob/main/LICENSE.md
 [effect]: https://effect.website/
 [omdb-api]: https://www.omdbapi.com/
-[cli]: https://github.com/kevinmichaelchen/moviedb-effect/tree/main/packages/omdb-cli
+[cli]: https://github.com/kevinmichaelchen/movie-effect/tree/main/packages/omdb-cli
 [core]: https://www.npmjs.com/package/@movie-effect/core

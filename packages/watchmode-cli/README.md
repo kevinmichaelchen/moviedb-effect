@@ -49,4 +49,4 @@ watchmode title 1234
 
 [watchmode-api]: https://api.watchmode.com/
 [sdk]: https://www.npmjs.com/package/@movie-effect/watchmode
-[license]: https://github.com/kevinmichaelchen/moviedb-effect/blob/main/LICENSE.md
+[license]: https://github.com/kevinmichaelchen/movie-effect/blob/main/LICENSE.md

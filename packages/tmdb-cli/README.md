@@ -56,4 +56,4 @@ tmdb person 17419
 
 [tmdb-api]: https://developer.themoviedb.org/
 [sdk]: https://www.npmjs.com/package/@movie-effect/tmdb
-[license]: https://github.com/kevinmichaelchen/moviedb-effect/blob/main/LICENSE.md
+[license]: https://github.com/kevinmichaelchen/movie-effect/blob/main/LICENSE.md

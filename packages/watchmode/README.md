@@ -75,8 +75,8 @@ Effect.runPromise(runnable)
 [npm-badge]: https://img.shields.io/npm/v/@movie-effect/watchmode.svg
 [npm-url]: https://www.npmjs.com/package/@movie-effect/watchmode
 [license-badge]: https://img.shields.io/badge/License-MIT-yellow.svg
-[license-url]: https://github.com/kevinmichaelchen/moviedb-effect/blob/main/LICENSE.md
+[license-url]: https://github.com/kevinmichaelchen/movie-effect/blob/main/LICENSE.md
 [effect]: https://effect.website/
 [watchmode-api]: https://api.watchmode.com/
-[cli]: https://github.com/kevinmichaelchen/moviedb-effect/tree/main/packages/watchmode-cli
+[cli]: https://github.com/kevinmichaelchen/movie-effect/tree/main/packages/watchmode-cli
 [core]: https://www.npmjs.com/package/@movie-effect/core

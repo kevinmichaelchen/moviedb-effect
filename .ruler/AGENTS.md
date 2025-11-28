@@ -1,4 +1,4 @@
-# moviedb-effect - AI Agent Instructions
+# movie-effect - AI Agent Instructions
 
 **Project**: A modern, type-safe TypeScript client for The Movie Database (TMDb) API, built with Effect.
 
@@ -210,7 +210,7 @@ const program = Effect.gen(function*() {
 - Effect Docs: https://effect.website/
 - Ruler Docs: https://github.com/intellectronica/ruler
 - TMDb API: https://developer.themoviedb.org/docs
-- Project Repo: https://github.com/kevinmichaelchen/moviedb-effect
+- Project Repo: https://github.com/kevinmichaelchen/movie-effect
 
 ## Recent Improvements
 
