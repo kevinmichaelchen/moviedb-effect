@@ -1,24 +1,77 @@
 name: Release
 
 on:
-  release:
-    types: [published]
+  # Manual trigger for releases
   workflow_dispatch:
     inputs:
       dry-run:
-        description: "Run in dry-run mode (no actual publish)"
+        description: "Dry run (no actual release)"
         required: false
         default: false
         type: boolean
+  # Auto-publish when tags are pushed
+  push:
+    tags:
+      - "v*.*.*"
+      - "*@*" # For package-specific tags like @movie-effect/core@1.0.0
 
-# Required for OIDC trusted publishing
 permissions:
-  contents: read
-  id-token: write
+  contents: write # For creating releases and pushing tags
+  id-token: write # For OIDC npm trusted publishing
+
+env:
+  NX_TUI: "false"
 
 jobs:
+  release:
+    runs-on: ubuntu-latest
+    # Only run version job on workflow_dispatch, not on tag push
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "pnpm"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Release (dry-run)
+        if: inputs.dry-run
+        run: pnpm nx release --dry-run
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release
+        if: ${{ !inputs.dry-run }}
+        run: pnpm nx release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+
   publish:
     runs-on: ubuntu-latest
+    # Run on tag push (after local nx release --skip-publish)
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -45,4 +98,3 @@ jobs:
         run: pnpm nx release publish
         env:
           NPM_CONFIG_PROVENANCE: true
-          DRY_RUN: ${{ inputs.dry-run || 'false' }}

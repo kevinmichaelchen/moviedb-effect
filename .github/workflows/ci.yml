@@ -34,13 +34,13 @@ jobs:
         run: pnpm typecheck
 
       - name: Lint
-        run: npx nx affected -t lint
+        run: pnpm nx affected -t lint
 
       - name: Format check
         run: pnpm format:check
 
       - name: Build
-        run: npx nx affected -t build
+        run: pnpm nx affected -t build
 
       - name: Unit tests
-        run: npx nx affected -t test:unit
+        run: pnpm nx affected -t test:unit

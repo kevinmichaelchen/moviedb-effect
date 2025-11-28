@@ -11,7 +11,13 @@
       "conventionalCommits": true
     },
     "changelog": {
-      "projectChangelogs": true
+      "projectChangelogs": {
+        "createRelease": "github"
+      }
+    },
+    "git": {
+      "commit": true,
+      "tag": true
     }
   },
   "namedInputs": {
